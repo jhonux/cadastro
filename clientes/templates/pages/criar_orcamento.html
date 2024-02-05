@@ -1,0 +1,30 @@
+<form method="post">
+    {% csrf_token %}
+
+    <label for="{{ form.cliente_id.id_for_label }}">Escolha o cliente:</label>
+    <select name="{{ form.cliente_id.name }}" id="{{ form.cliente_id.id_for_label }}">
+        <option value="" selected>---------</option>
+        {% for cliente in clientes %}
+            <option value="{{ cliente.id }}">{{ cliente }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Escolher Cliente</button>
+</form>
+
+<form method="post">
+    {% csrf_token %}
+
+    <input type="hidden" name="cliente_id" value="{{ form.cliente_id.value }}"> <!-- Use POST para enviar o ID do cliente -->
+
+    <label for="{{ form.veiculo.id_for_label }}">Escolha o veículo:</label>
+    {{ form.veiculo }}
+
+    <label for="{{ form.data.id_for_label }}">Data:</label>
+    {{ form.data }}
+
+    <label for="{{ form.descricao.id_for_label }}">Descrição:</label>
+    {{ form.descricao }}
+
+    <button type="submit">Criar Orçamento</button>
+</form>
